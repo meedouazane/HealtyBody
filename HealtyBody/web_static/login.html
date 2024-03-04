@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Body - BMI Tracker</title>
+    <link rel="shortcut icon" href="images/icon.png" >
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="scripts/login.js?{{ cache_id }}"></script>
+</head>
+<body>
+    <header>
+        <img src="images/icon.png">
+        <h2> Healthy Body - BMI Tracker  </h2>
+        <h4><br>Calculates & tracking Body Mass Index (BMI) based on user input for weight and height.
+        </h4>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form id="login-form" action="login-form" method="post">
+                <h1>Welcome to Healthy Body</h1>
+                <h2>Login to Track Your BMI</h2>
+                <input type="text" id="username1" name="username1" placeholder="Username" required>
+                <input type="password" id="password1" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <div id="login_user"></div>
+            </form>
+        </div>
+        <div class="form-container">
+            <form id="signup-form" action="signup.php" method="post">
+                <h2>Don't have an account? Sign Up Now!</h2>
+                <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                <input type="text" id="last_name" name="last_name"  placeholder="Last Name" required>
+                <input type="text" id="username" name="username"  placeholder="Username" required>
+                <input type="password" id="password" name="password"  placeholder="Password" required>
+                <input type="text" id="email" name="email"  placeholder="Email" required>
+                <div id="sex_choice">
+                    <select id="Sex" name="sex" required>
+                        <option value="" disabled selected>Select Sex</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <button type="submit">Sign Up</button>
+                <div id="user_create"></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

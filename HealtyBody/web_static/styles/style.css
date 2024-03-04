@@ -1,0 +1,111 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    background-color: #d6dbdb;
+    margin-top: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.form-container {
+    flex: 1;
+    padding: 40px;
+}
+
+h1, h2 {
+#0000e6
+    color: #333;
+}
+
+header h2 {
+    color:   #33cccc;
+}
+
+header h4 {
+    margin-top: 35px;
+    margin-left: -310px;
+    color: #900C3F;
+}
+
+#user_create {
+    color: green; /* White text color */
+    padding: 15px; /* Padding around the text */
+    text-align: center; /* Center the text */
+    font-size: 18px; /* Font size */
+    margin-top: 10px;
+    margin-left: -250px;
+}
+#login_user {
+    color: red; /* White text color */
+    padding: 15px; /* Padding around the text */
+    text-align: center; /* Center the text */
+    font-size: 18px; /* Font size */
+    margin-top: 10px;
+    width: 350px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 350px;
+}
+header {
+     display: flex;
+     height: 70px;
+     width: 100%;
+}
+img {
+            max-width: 300px;
+            max-height: 300px;
+            margin-right: 30px;
+}
+button {
+    background-color: #4caf50;
+    color: #fff;
+    width: 365px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#sex_choice {
+    display: flex;
+}
+#Sex {
+    margin-bottom: 20px;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 175px;
+    background: white;
+}
