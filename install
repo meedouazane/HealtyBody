@@ -1,0 +1,3 @@
+sudo python3 -m venv venv
+sudo venv/bin/pip3 install flask
+export PYTHONPATH=/home/m311/alx/Portfolio-project/models/:$PYTHONPATH
