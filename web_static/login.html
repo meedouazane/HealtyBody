@@ -18,7 +18,7 @@
     </header>
     <div class="container">
         <div class="form-container">
-            <form id="login-form" action="login-form" method="post">
+            <form id="login-form" method="post" action="{{ url_for('get_bmi') }}">
                 <h1>Welcome to Healthy Body</h1>
                 <h2>Login to Track Your BMI</h2>
                 <input type="text" id="username1" name="username1" placeholder="Username" required>
@@ -28,13 +28,15 @@
             </form>
         </div>
         <div class="form-container">
-            <form id="signup-form" action="signup.php" method="post">
+            <form id="signup-form" method="post" action="{{ url_for('get_bmi') }}">
                 <h2>Don't have an account? Sign Up Now!</h2>
                 <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
                 <input type="text" id="last_name" name="last_name"  placeholder="Last Name" required>
                 <input type="text" id="username" name="username"  placeholder="Username" required>
                 <input type="password" id="password" name="password"  placeholder="Password" required>
                 <input type="text" id="email" name="email"  placeholder="Email" required>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="date_of_birth" required>
                 <div id="sex_choice">
                     <select id="Sex" name="sex" required>
                         <option value="" disabled selected>Select Sex</option>

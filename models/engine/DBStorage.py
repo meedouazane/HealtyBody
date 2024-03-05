@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
 from models.bmi import BMI, User
-
-
+from hashlib import md5
 
 Base = declarative_base()
+
 
 class DBStorage:
     __session = None
@@ -18,19 +18,19 @@ class DBStorage:
 
     def add_user(self, username=None,
                  first_name=None, last_name=None,
-                 sex=None, email=None, password=None):
+                 sex=None, email=None, password=None, date_of_birth=None):
         new_user = User(
             username=username,
             first_name=first_name,
             last_name=last_name,
             sex=sex,
             email=email,
-            password=password
+            password=password,
+            date_of_birth=date_of_birth
         )
         self.new(new_user)
         self.save()
         self.close()
-
 
     def new(self, obj):
         """Adds a new object to the database"""
@@ -69,7 +69,6 @@ class DBStorage:
             query = query.filter(User.id == user_id)
         obj = query.all()
         return obj
-
 
     def add_bmi(self, username=None, height=None, weight=None):
         query_user = self.__session.query(User).filter(User.username == username).first()

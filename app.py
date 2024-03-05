@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application """
-from flask_cors import CORS
 from flask import Flask, render_template, abort, request, jsonify, send_from_directory
 from models.engine.DBStorage import DBStorage
+from flask_cors import CORS
+from hashlib import md5
+from datetime import datetime
+from models.bmi import BMI, User
 app = Flask(__name__)
 
 CORS(app)
@@ -11,13 +14,17 @@ app.template_folder = 'web_static/'
 
 @app.route('/users/', methods=['GET'], strict_slashes=False)
 def get_bmi():
-    """ Getting BMIs for a user"""
-    global secret
+    """ Login """
+    global secret, date_of_birth
     db_storage = DBStorage()
     username = request.args.get('username')
+    data_user = db_storage.user(username)
+    for data in data_user:
+        date_of_birth = data.date_of_birth
     if not username:
         abort(401, "enter username")
     password = request.args.get('password')
+    password = md5(password.encode()).hexdigest()
     if not password:
         abort(401, "enter password")
     try:
@@ -32,7 +39,7 @@ def get_bmi():
         secret = user.password
     if secret != password:
         abort(401, "Wrong password")
-    return render_template('1-users.html', username=username, bmi_record=dictionary)
+    return render_template('1-users.html', username=username, date_of_birth=date_of_birth, bmi_record=dictionary)
 
 
 @app.route('/user/info', methods=['GET'], strict_slashes=False)
@@ -81,12 +88,14 @@ def add_user():
     try:
         username = request.form.get('username')
         password = request.form.get('password')
+        password = md5(password.encode()).hexdigest()
         email = request.form.get('email')
         last_name = request.form.get('last_name')
         first_name = request.form.get('first_name')
         sex = request.form.get('sex')
+        date_of_birth = request.form.get('date_of_birth')
         db_storage = DBStorage()
-        db_storage.add_user(username, first_name, last_name, sex, email, password)
+        db_storage.add_user(username, first_name, last_name, sex, email, password, date_of_birth)
         db_storage.add_bmi(username, 1, 0)
         return jsonify({'success': True, 'message': 'User added successfully'})
     except Exception as e:
@@ -140,15 +149,15 @@ def serve_script():
     return send_from_directory('web_static/scripts/', filename)
 
 
-@app.route('/images/icon.png')
+@app.route('/users/images/icon.png')
 def serve_png():
     """ Route to serve png file """
     filename = 'icon.png'
     return send_from_directory('web_static/images/', filename)
 
 
-@app.route('/users/images/icon.png')
-def serve_png2():
+@app.route('/images/icon.png')
+def serve_login_png():
     """ Route to serve png file """
     filename = 'icon.png'
     return send_from_directory('web_static/images/', filename)

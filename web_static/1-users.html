@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
     <link rel="stylesheet" href="styles/style-user.css">
-	<link rel="icon" href="/users/images/icon.png" type="image/x-icon">
+	<link rel="icon" href="user/images/icon.png" type="image/x-icon">
     <script type="text/javascript" src="scripts/user.js?{{ cache_id }}"></script>
 </head>
 <body>
@@ -22,11 +22,10 @@
     <div id="chartContainer">
         <canvas id="bmiChart" width="300" height="100"></canvas>
         <img id="bmi" src="images/Bmi.jpg">
-    <form id="bmi-form" data-username="{{ username }}">
+    <form id="bmi-form" data-username="{{ username }}" data-dob="{{ date_of_birth }}">
                 <h2>Update your weight</h2>
                 <input type="text" id="Height" name="Height" placeholder="Height" required>
                 <input type="text" id="Weight" name="Weight" placeholder="Weight" required>
-				<input type="text" id="Age" name="Age" placeholder="Age" required>
 				<select id="activity" name="activity" required>
                         <option value="" disabled selected>Activity Level</option>
                         <option value="1.2">Sedentary</option>

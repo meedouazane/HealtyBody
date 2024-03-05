@@ -6,6 +6,7 @@ from uuid import uuid4
 from datetime import datetime
 from sqlalchemy import Column, String, DateTime, Integer, ForeignKey, func
 from sqlalchemy.orm import declarative_base, relationship
+from hashlib import md5
 
 Base = declarative_base()
 
@@ -21,6 +22,7 @@ class User(Base):
     sex = Column(String(36))
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
+    date_of_birth = Column(DateTime, nullable=True)
     bmi_records = relationship("BMI", back_populates="user")
 
 

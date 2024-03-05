@@ -17,12 +17,17 @@ $(document).ready(function () {
         });
     }
     const formUsername = $('#bmi-form').data('username');
+    const dob = $('#bmi-form').data('dob');
+    const today = new Date();
+    const birthYear = dob ? new Date(dob).getFullYear() : null;
+    const Year = today ? new Date(today).getFullYear() : null;
     updateUserInfo(formUsername);
     $('#bmi-form').submit(function (event) {
         event.preventDefault();
         const weight = $('#Weight').val();
         const height = $('#Height').val();
-        const Age = $('#Age').val();
+        const Age = Year - birthYear;
+        console.log("Age:", Age);
         const activity = $('#activity').val();
         const bmr = 10 * weight + 6.25 * height - 5 * Age + 5;
         const generalProteinRequirements = 0.8 * weight;
