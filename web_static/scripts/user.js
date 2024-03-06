@@ -30,6 +30,7 @@ $(document).ready(function () {
         console.log("Age:", Age);
         const activity = $('#activity').val();
         const bmr = 10 * weight + 6.25 * height - 5 * Age + 5;
+        const bmi = weight / ((height / 100) ** 2);
         const generalProteinRequirements = 0.8 * weight;
         const proteinRequirementsMuscleBuilding = 1.5 * weight;
         const proteinRequirementsWeightLoss = 1.8 * weight;
@@ -37,6 +38,7 @@ $(document).ready(function () {
 
         $('#info').html(
             '<h2>Nutritional Information </h2>' +
+            '<li>Current BMI                              : ' + bmi.toFixed(2) + '</li>' +
             '<li>Total Daily Caloric Needs                : ' + bmr.toFixed(2) + ' Kcal</li>' +
             '<li>General Protein Requirements             : ' + generalProteinRequirements.toFixed(2) + ' grams of protein</li>' +
             '<li>Protein Requirements for Muscle Building : ' + proteinRequirementsMuscleBuilding.toFixed(2) + ' grams of protein</li>' +
