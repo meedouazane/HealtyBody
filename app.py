@@ -24,7 +24,6 @@ def get_bmi():
     if not username:
         abort(401, "enter username")
     password = request.args.get('password')
-    password = md5(password.encode()).hexdigest()
     if not password:
         abort(401, "enter password")
     try:
@@ -88,7 +87,6 @@ def add_user():
     try:
         username = request.form.get('username')
         password = request.form.get('password')
-        password = md5(password.encode()).hexdigest()
         email = request.form.get('email')
         last_name = request.form.get('last_name')
         first_name = request.form.get('first_name')

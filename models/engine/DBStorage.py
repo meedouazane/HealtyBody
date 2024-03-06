@@ -19,6 +19,7 @@ class DBStorage:
     def add_user(self, username=None,
                  first_name=None, last_name=None,
                  sex=None, email=None, password=None, date_of_birth=None):
+        password = md5(password.encode()).hexdigest()
         new_user = User(
             username=username,
             first_name=first_name,

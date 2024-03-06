@@ -6,7 +6,6 @@ $(document).ready(function () {
         const last_name = $('#last_name').val();
         const email = $('#email').val();
         const sex = $('#Sex').val();
-        console.log('Selected sex:', sex);
         const password = $('#password').val();
 
         $.ajax({
@@ -17,7 +16,7 @@ $(document).ready(function () {
             data: $('#signup-form').serialize(),
             success: function (json) {
                 $('#user_create').text('Your account has been successfully created');
-                            $('#username').val('');
+                $('#username').val('');
                 $('#first_name').val('');
                 $('#last_name').val('');
                 $('#email').val('');
@@ -33,12 +32,14 @@ $(document).ready(function () {
     $('#login-form').submit(function (event) {
     event.preventDefault();
     const username = $('#username1').val();
-    const password = $('#password1').val();
+    let password = $('#password1').val();
+    password = md5(password)
+    console.log(password)
 
     $.ajax({
         method: 'GET',
         url: 'http://127.0.0.1:5000/users/',
-        dataType: 'html',  // Change dataType to 'html'
+        dataType: 'html',
         contentType: 'application/x-www-form-urlencoded',
         data: {
             username: username,
