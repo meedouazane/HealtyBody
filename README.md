@@ -1,5 +1,5 @@
 # HealtyBody*
-![logo](https://i.imgur.com/zg49V5K.png)
+![logo](https://i.ibb.co/4mYJ4q7/1708985836942.jpg)
 
 
 # Introduction
