@@ -126,7 +126,7 @@ def serve_pdf_boys():
     return send_from_directory('web_static/data/', filename)
 
 
-@app.route('/users/data/chart-2015.pdf')
+@app.route('/users/data/chart-2016.pdf')
 def serve_pdf_girls():
     """ Route to serve pdf2 file """
     filename = 'chart-2016.pdf'
