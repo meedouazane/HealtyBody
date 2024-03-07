@@ -1,4 +1,4 @@
-# HealtyBody*
+# HealtyBody
 ![logo](https://i.ibb.co/4mYJ4q7/1708985836942.jpg)
 
 
