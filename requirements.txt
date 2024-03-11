@@ -1,5 +1,5 @@
-sudo pip3 install Flask
-sudo pip3 install Flask-SQLAlchemy
-sudo pip3 install SQLAlchemy
-sudo pip3 install Flask-RESTful
-sudo pip3 install Flask-CORS
+Flask==2.0.1
+SQLAlchemy==1.4.25
+Flask-SQLAlchemy==2.6.0
+Flask-CORS==3.0.10
+
