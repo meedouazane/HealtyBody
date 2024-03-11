@@ -32,25 +32,25 @@ Embark on a journey to a healthier you with our intuitive features. Welcome to a
 
 ## Installation
 * Clone this repository: `git clone "https://github.com/meedouazane/HealtyBody.git"`
-* Create db "Mysql shoud be installed": `cat db.sql | mysql -u <username> -p`
+* Create db "Mysql should be installed": `cat db.sql | mysql -u <username> -p`
 " You will probably need to create tables too"
-* Access AirBnb directory: `cd HealtyBody`
+* Access HealtyBody directory: `cd HealtyBody`
 * Set environment variables: `export PYTHONPATH=/YourPath/HealtyBody/models/:$PYTHONPATH`
 * Run app.py: `.venv/bin/python3 app.py` and enter command
 # Technologies:
 
 Front-end Technologies:
 
-JavaScript: JavaScript is a versatile and widely used programming language for building dynamic and interactive web pages. 
-HTML/CSS:  the standard markup language for creating the structure of web pages. CSS  is used for styling and layout. Together, HTML and CSS form the foundation for building the visual components of a website.
-jQuery: jQuery is a fast and lightweight JavaScript library designed to simplify tasks like HTML document traversal, event handling, and animation.
+JavaScript: JavaScript is a versatile and widely used programming language for building dynamic and interactive web pages.  
+HTML/CSS:  the standard markup language for creating the structure of web pages. CSS  is used for styling and layout. Together, HTML and CSS form the foundation for building the visual components of a website.  
+jQuery: jQuery is a fast and lightweight JavaScript library designed to simplify tasks like HTML document traversal, event handling, and animation.  
 
 Back-end Technologies:
 
-Python:  high-level, general-purpose programming language known for its readability and simplicity.
-Flask: lightweight and flexible web framework for Python. Flask provides the essentials for building a web application without imposing a rigid structure.
-MySQL: used to store and manage structured data. In the context of web development, MySQL is commonly employed to handle data persistence and retrieval.
-SQLAlchemy: SQLAlchemy simplifies database operations by allowing developers to work with Python objects instead of raw SQL queries.
+Python:  high-level, general-purpose programming language known for its readability and simplicity.  
+Flask: lightweight and flexible web framework for Python. Flask provides the essentials for building a web application without imposing a rigid structure.  
+MySQL: used to store and manage structured data. In the context of web development, MySQL is commonly employed to handle data persistence and retrieval.  
+SQLAlchemy: SQLAlchemy simplifies database operations by allowing developers to work with Python objects instead of raw SQL queries.  
 
 ## The Team
 Mohamed Ouazane - [Github](https://github.com/meedouazane)  
