@@ -1,4 +1,6 @@
-from sqlalchemy import create_engine, text
+#!/usr/bin/python3
+""" Database storage """
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from models.bmi import BMI, User
 from hashlib import md5
@@ -11,14 +13,17 @@ class DBStorage:
 
     def __init__(self):
         """Initialize the DBStorage class."""
-        self.engine = create_engine("mysql+mysqldb://m:m@localhost/bmi_db", pool_pre_ping=True)
+        self.engine = create_engine("mysql+mysqldb://m:m@localhost/bmi_db",
+                                    pool_pre_ping=True)
         Base.metadata.create_all(self.engine)
-        self.Session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+        self.Session = sessionmaker(autocommit=False, autoflush=False,
+                                    bind=self.engine)
         self.__session = self.Session()
 
     def add_user(self, username=None,
                  first_name=None, last_name=None,
                  sex=None, email=None, password=None, date_of_birth=None):
+        """ Add new user """
         password = md5(password.encode()).hexdigest()
         new_user = User(
             username=username,
@@ -42,9 +47,12 @@ class DBStorage:
         self.__session.commit()
 
     def delete_user(self, username=None):
-        obj_user = self.__session.query(User).filter(User.username == username).first()
+        """ Remove user"""
+        obj_user = (self.__session.query(User).
+                    filter(User.username == username).first())
         try:
-            obj_bmi = self.__session.query(BMI).filter(BMI.user_id == obj_user.id)
+            obj_bmi = (self.__session.query(BMI).
+                       filter(BMI.user_id == obj_user.id))
             for obj in obj_bmi:
                 self.__session.delete(obj)
         except Exception:
@@ -56,25 +64,32 @@ class DBStorage:
     def user(self, username=None):
         """Returns a dictionary of models currently in the database"""
         dictionary = {}
-        objs = self.__session.query(User).filter(User.username == username)
+        objs = (self.__session.query(User).
+                filter(User.username == username))
         for obj in objs:
             key = f"{User.__name__}.{obj.id}"
             dictionary[key] = obj
         return objs
 
     def get_bmi_user(self, username=None):
-        query_user = self.__session.query(User).filter(User.username == username).first()
+        """ get bmi of user"""
+        query_user = (self.__session.query(User).
+                      filter(User.username == username).first())
         user_id = query_user.id
-        query = self.__session.query(User, BMI).join(BMI, User.id == BMI.user_id).order_by(BMI.date)
+        query = (self.__session.query(User, BMI).
+                 join(BMI, User.id == BMI.user_id).order_by(BMI.date))
         if user_id is not None:
             query = query.filter(User.id == user_id)
         obj = query.all()
         return obj
 
     def add_bmi(self, username=None, height=None, weight=None):
-        query_user = self.__session.query(User).filter(User.username == username).first()
+        """ add new bmi for a user"""
+        query_user = (self.__session.query(User).
+                      filter(User.username == username).first())
         user_id = query_user.id
-        query = self.__session.query(User).filter(User.id == user_id).first()
+        query = (self.__session.query(User).
+                 filter(User.id == user_id).first())
         if query:
             # Create a new BMI record associated with the user
             new_bmi = BMI(

@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application """
-from flask import Flask, render_template, abort, request, jsonify, send_from_directory
+from flask import (Flask, render_template, abort, request,
+                   jsonify, send_from_directory)
 from models.engine.DBStorage import DBStorage
 from flask_cors import CORS
-from hashlib import md5
-from datetime import datetime
-from models.bmi import BMI, User
+
+
 app = Flask(__name__)
 
 CORS(app)
@@ -38,7 +38,8 @@ def get_bmi():
         secret = user.password
     if secret != password:
         abort(401, "Wrong password")
-    return render_template('1-users.html', username=username, date_of_birth=date_of_birth, bmi_record=dictionary)
+    return render_template('1-users.html', username=username,
+                           date_of_birth=date_of_birth, bmi_record=dictionary)
 
 
 @app.route('/user/info', methods=['GET'], strict_slashes=False)
@@ -93,7 +94,8 @@ def add_user():
         sex = request.form.get('sex')
         date_of_birth = request.form.get('date_of_birth')
         db_storage = DBStorage()
-        db_storage.add_user(username, first_name, last_name, sex, email, password, date_of_birth)
+        db_storage.add_user(username, first_name, last_name, sex, email,
+                            password, date_of_birth)
         db_storage.add_bmi(username, 1, 0)
         return jsonify({'success': True, 'message': 'User added successfully'})
     except Exception as e:
@@ -107,7 +109,8 @@ def del_user(username):
         db_storage = DBStorage()
         username = request.form.get('username')
         db_storage.delete_user(username)
-        return jsonify({'success': True, 'message': 'User Deleted successfully'})
+        return jsonify({'success': True,
+                        'message': 'User Deleted successfully'})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
@@ -171,7 +174,8 @@ def add_bmi():
         weight = request.args.get('weight')
         db_storage.add_bmi(username, int(height), int(weight))
         db_storage.close()
-        return jsonify({'success': True, 'message': 'User BMI added successfully'})
+        return jsonify({'success': True,
+                        'message': 'User BMI added successfully'})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
