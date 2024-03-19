@@ -182,4 +182,4 @@ def add_bmi():
 
 if __name__ == "__main__":
     """ Main Function """
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='10.204.225.169', port=5000)
