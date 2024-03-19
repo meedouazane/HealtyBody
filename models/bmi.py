@@ -2,11 +2,11 @@
 """
 This module defines a base class for all models
 """
-from uuid import uuid4
+import uuid
 from datetime import datetime
 from sqlalchemy import Column, String, DateTime, Integer, ForeignKey, func
 from sqlalchemy.orm import declarative_base, relationship
-from hashlib import md5
+
 
 Base = declarative_base()
 
@@ -15,7 +15,7 @@ class User(Base):
     """ table for users """
     __tablename__ = "users"
 
-    id = Column(String(36), primary_key=True, default=func.uuid(), unique=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), unique=True)
     username = Column(String(128), unique=True, nullable=False)
     first_name = Column(String(128))
     last_name = Column(String(128))
@@ -30,7 +30,7 @@ class BMI(Base):
     """ table for bmi """
     __tablename__ = "bmi_records"
 
-    id = Column(String(36), primary_key=True, default=func.uuid(), unique=True)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()), unique=True)
     user_id = Column(String(36), ForeignKey("users.id"), nullable=False)
     height = Column(Integer, nullable=False)
     weight = Column(Integer, nullable=False)

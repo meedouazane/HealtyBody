@@ -13,7 +13,7 @@ class DBStorage:
 
     def __init__(self):
         """Initialize the DBStorage class."""
-        self.engine = create_engine("mysql+mysqldb://m:m@localhost/bmi_db",
+        self.engine = create_engine("postgresql://m:5I6H7scx4uBWhR978rmc1McKu8Mf4IJg@dpg-cnnl97fjbltc73dutn90-a.oregon-postgres.render.com/bmi_db",
                                     pool_pre_ping=True)
         Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(autocommit=False, autoflush=False,
