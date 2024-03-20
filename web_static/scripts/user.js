@@ -1,11 +1,14 @@
 $(document).ready(function () {
-     $('#logout').click(function() {
-        window.location.href = 'http://127.0.0.1:5000/';
+    $('#logout').click(function() {
+        // Redirect to the root URL when logging out
+        window.location.href = '/';
     });
+
     function updateUserInfo(username) {
         $.ajax({
             method: 'GET',
-            url: 'http://127.0.0.1:5000/user/info/?username=' + encodeURIComponent(username),
+            // Use a relative URL to make requests to the same host and port
+            url: '/user/info/?username=' + encodeURIComponent(username),
             dataType: 'json',
             contentType: 'application/x-www-form-urlencoded',
             success: function (json) {
@@ -16,12 +19,14 @@ $(document).ready(function () {
             }
         });
     }
+
     const formUsername = $('#bmi-form').data('username');
     const dob = $('#bmi-form').data('dob');
     const today = new Date();
     const birthYear = dob ? new Date(dob).getFullYear() : null;
     const Year = today ? new Date(today).getFullYear() : null;
     updateUserInfo(formUsername);
+
     $('#bmi-form').submit(function (event) {
         event.preventDefault();
         const weight = $('#Weight').val();
@@ -45,9 +50,11 @@ $(document).ready(function () {
             '<li>Protein Requirements for Weight Loss     : ' + proteinRequirementsWeightLoss.toFixed(2) + ' grams of protein</li>' +
             '<li>Daily Water Intake                       : ' + watered.toFixed(2) + ' L</li>'
         );
+
         $.ajax({
             method: 'POST',
-            url: 'http://127.0.0.1:5000/users/bmi/?username=' + encodeURIComponent(formUsername) + '&height=' + encodeURIComponent(height) + '&weight=' + encodeURIComponent(weight),
+            // Use a relative URL to make requests to the same host and port
+            url: '/users/bmi/?username=' + encodeURIComponent(formUsername) + '&height=' + encodeURIComponent(height) + '&weight=' + encodeURIComponent(weight),
             dataType: 'json',
             contentType: 'application/x-www-form-urlencoded',
             success: function (json) {
@@ -59,6 +66,7 @@ $(document).ready(function () {
                 $('#Submit').text('Error');
             }
         });
+
         updateUserInfo(formUsername);
     });
 });
