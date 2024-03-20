@@ -1,23 +1,16 @@
 $(document).ready(function () {
-    // Function to get the base URL dynamically
-    function getBaseUrl() {
-        // Get the current hostname and port
-        var host = window.location.hostname;
-        var port = window.location.port;
-        // Construct the base URL
-        var baseUrl = 'http://' + host;
-        if (port) {
-            baseUrl += ':' + port;
-        }
-        return baseUrl;
+    // Function to determine the current protocol
+    function getCurrentProtocol() {
+        return window.location.protocol;
     }
 
     $('#signup-form').submit(function (event) {
         event.preventDefault();
-        const baseUrl = getBaseUrl(); // Get the base URL
+        const protocol = getCurrentProtocol(); // Get the current protocol
+        const url = protocol + '//healtybody.onrender.com/users/add/'; // Use the current protocol in the URL
         $.ajax({
             method: 'POST',
-            url: baseUrl + '/users/add/', // Construct the URL using the base URL
+            url: url,
             dataType: 'json',
             contentType: 'application/x-www-form-urlencoded',
             data: $('#signup-form').serialize(),
@@ -38,15 +31,16 @@ $(document).ready(function () {
 
     $('#login-form').submit(function (event) {
         event.preventDefault();
-        const baseUrl = getBaseUrl(); // Get the base URL
+        const protocol = getCurrentProtocol(); // Get the current protocol
         const username = $('#username1').val();
         let password = $('#password1').val();
         password = md5(password)
         console.log(password)
 
+        const url = protocol + '//healtybody.onrender.com/users/';
         $.ajax({
             method: 'GET',
-            url: baseUrl + '/users/',
+            url: url,
             dataType: 'html',
             contentType: 'application/x-www-form-urlencoded',
             data: {
@@ -54,7 +48,8 @@ $(document).ready(function () {
                 password: password
             },
             success: function (response) {
-                window.location.href = baseUrl + '/users/?username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
+                const redirectUrl = protocol + '//healtybody.onrender.com/users/?username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
+                window.location.href = redirectUrl;
             },
             error: function () {
                 $('#login_user').text('Invalid username or password');
