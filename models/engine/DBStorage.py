@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from models.bmi import BMI, User
 from hashlib import md5
+import os
 
 Base = declarative_base()
 
@@ -13,7 +14,10 @@ class DBStorage:
 
     def __init__(self):
         """Initialize the DBStorage class."""
-        self.engine = create_engine("postgresql://m:5I6H7scx4uBWhR978rmc1McKu8Mf4IJg@dpg-cnnl97fjbltc73dutn90-a.oregon-postgres.render.com/bmi_db",
+        password = os.environ.get('PGPASSWORD')
+        if not password:
+            print("Enter PostgreSQL password")
+        self.engine = create_engine(f"postgresql://m:{password}@dpg-cnnl97fjbltc73dutn90-a.oregon-postgres.render.com/bmi_db",
                                     pool_pre_ping=True)
         Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(autocommit=False, autoflush=False,
